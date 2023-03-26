@@ -1,0 +1,66 @@
+
+drop table charakterystyka;
+
+
+create table projekt_koncowy.Ogolne
+(
+	id int,
+	typ varchar(40),
+    gromada varchar(40),
+    rzad varchar(40),
+    rodzina varchar(40),
+    rodzaj varchar(40),
+    gatunek varchar(40),
+    primary key (gatunek)
+);
+
+create table projekt_koncowy.Morfologia
+(
+	gatunek varchar(40),
+ 	dlugosc int,
+   	ogon int,
+   	wzrost int,
+	oczy int,
+    foreign key (gatunek) references Ogolne(gatunek)
+);
+
+create table projekt_koncowy.Charakterystyka
+(
+	gatunek varchar(40),
+    dlugosc_zycia int,
+    masa_min int,
+    masa_max int,
+    symetria varchar(40),
+    cieplota_ciala varchar(40),
+    foreign key (gatunek) references Ogolne(gatunek)
+);
+
+create table projekt_koncowy.Sposob_zycia
+(
+	gatunek varchar(40),
+    poruszanie varchar(40), #plyniecie/chodzenie/latanie/pelzanie
+    srodowisko_zycia varchar(40), # lad/woda/powietrze/wiele
+    kontynent varchar(40), #występowanie
+    tryb_zycia varchar(40), #nocny/dzienny
+    sen_ziomowy varchar (3), #tak/nie
+    klimat varchar(40) #klimat, w ktorym zyja
+	foreign key (gatunek) references Ogolne(gatunek)
+);
+
+create table projekt_koncowy.Rozwoj_rozmnazanie
+(
+    dlugosc_ciazy int,
+    ilosc_potomstwa int,
+    czas_z_matka int, #czas spedzony mlodego z matka
+    rodzaj_reprodukcji varchar(40)#jajorodne/zyworodne
+);
+
+create table Rozwoj_rozmnazanie
+(
+	gatunek varchar(40),
+	dlugosc_ciazy int,
+	ilosc_potomstwa int, #mlode_w_miocie
+	czas_z_matka int, #zycia w miesiacach
+	rodzaje_reprodukcji, #jajorodne,zyworodne
+	foreign key (gatunek) references Ogolne(gatunek)
+);
